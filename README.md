@@ -1,3 +1,17 @@
+# import2db
+
+~~~shell
+rgmo Airport iata:string:index name:string:index icao:string:index city:string:index country:string:index location:string
+~~~
+
+~~~ruby
+WorldAirports::Scrapped.instance.all_airports.values.each do |a|
+Airport.create(a)
+end
+~~~
+
+
+
 # WorldAirports
 
 world_airports is a lightweight ruby gem that allow you to get several information such as airport name, location, city and country based on an IATA code.
