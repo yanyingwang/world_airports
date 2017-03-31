@@ -6,7 +6,7 @@ rgmo Airport iata:string:index name:string:index icao:string:index city:string:i
 
 ~~~ruby
 WorldAirports::Scrapped.instance.all_airports.values.each do |a|
-Airport.create(a)
+Airport.create(a) unless Airport.find_by_iata(a[:iata])
 end
 ~~~
 
