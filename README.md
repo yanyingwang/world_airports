@@ -5,8 +5,14 @@ rgmo Airport iata:string:index name:string:index icao:string:index city:string:i
 ~~~
 
 ~~~ruby
+# how to import data to db
 WorldAirports::Scrapped.instance.all_airports.values.each do |a|
 Airport.create(a) unless Airport.find_by_iata(a[:iata])
+end
+
+# how to add scope to model
+class Airport < ActiveRecord::Base
+  scope :where_cities, -> (pinyin) { where(city: pinyin.camelize).where.not(name: "All Airports") }
 end
 ~~~
 
